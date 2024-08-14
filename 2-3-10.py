@@ -26,3 +26,5 @@ print('0123456789'[1:])
 print('0123456789'[:3])
 print('0123456789'[:-2])
 print('0123456789'[:7:3]) #step
+
+#print('  43FFffff bgflbfg;l %t;gl;g'.center(30, fillchar))
