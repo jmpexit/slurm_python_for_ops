@@ -1,6 +1,3 @@
-from collections import Counter
-from operator import itemgetter
-
 if __name__ == '__main__':
     rps_values_list = ['11531', '14346', '7493', 7493, 15850, '12791', 11288, '11531']
 
@@ -37,24 +34,22 @@ if __name__ == '__main__':
     print('average value is ', rps_value_avg)
 
     def frequency(dic):
-        frequency = dict()
+        freq = dict()
         v = 1
-
         for key in dic:
-            if key not in frequency.keys():
+            if key not in freq.keys():
                 v = 1
-                frequency.update({key: v})
+                freq.update({key: v})
             else:
                 v += 1
-                frequency.update({key: v})
-        print('frequency: ', frequency)
+                freq.update({key: v})
+        print('frequency: ', freq)
 
     if (len(rps_values_list) % 2 == 0):
         mean_high_id = int(len(rps_values_list) / 2)
         mean_low_id = mean_high_id - 1
         rps_value_mean = int((rps_values_list[mean_low_id] + rps_values_list[mean_high_id]) / 2)
         print('mean value is ', rps_value_mean)
-
     else:
         mean_id = (len(rps_values_list) // 2)
         rps_value_mean = rps_values_list[mean_id]
