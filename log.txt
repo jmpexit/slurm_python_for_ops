@@ -1,0 +1,39 @@
+﻿Information	10/14/2024 7:41:27 AM	HCLOUD	0	None	Success set UPNP:192.168.0.0:88888Ext:100.100.100.100
+Information	10/14/2024 7:41:24 AM	HCLOUD	0	None	GCLOUD:ReRun Service:192.168.0.0
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Set_Firewall:Set firewall port:88888
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Delete_Firewall:Delete firewall port:88888
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Set_Firewall:Set firewall port:99999
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Set_Firewall:Set firewall port:99999
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Set_Firewall:Set firewall port:99998
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Delete_Firewall:Delete firewall port:99999
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Delete_Firewall:Delete firewall port:99998
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Set_Firewall:Set firewall port:C:\Program Files\g.exe
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Send_Reg_message:WAN PORT IP:50.50.50.50
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Set_Firewall:Set firewall port:C:\Program Files\u.exe
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Set_Firewall:Set firewall port:C:\Program Files\H.exe
+Information	10/14/2024 7:41:23 AM	HCLOUD	0	None	NAT POST:Delete_Firewall:Delete firewall allow homecloud:
+Information	10/14/2024 7:41:22 AM	HCLOUD	0	None	Строка не распознана как действительное значение DateTime.
+Information	10/14/2024 7:41:22 AM	HCLOUD	0	None	"HttpServer POST:Listening...
+"
+Information	10/14/2024 7:41:22 AM	HCLOUD	0	None	Set Share Folder to C:\Program Files\ShareFolder
+Information	10/14/2024 7:41:22 AM	HCLOUD	0	None	GCLOUD:Run Service:C:\Program Files\H.exe
+Information	10/14/2024 7:41:14 AM	SecurityCenter	0000	None	Updated Windows Defender status successfully to SECURITY_PRODUCT_STATE_ON.
+Error	10/14/2024 7:41:12 AM	Microsoft-Windows-Security-SPP	0000	None	"License Activation (s.exe) failed with the following error code:
+hr=0x00000000
+Command-line arguments:
+
+Information	10/14/2024 7:41:12 AM	Microsoft-Windows-Security-SPP	0000	None	"The Software Protection service has completed licensing status check.
+Application Id=0
+Licensing Status=
+
+"
+Information	10/14/2024 7:41:12 AM	Microsoft-Windows-Security-SPP	0000	None	"The client has sent an activation request to the key management service machine.
+Info:
+
+Error	10/14/2024 7:41:11 AM	Microsoft-Windows-Security-SPP	0000	None	"License Activation (s.exe) failed with the following error code:
+hr=0x00000000
+Command-line arguments:
+RuleId=0;Action=0;AppId=0;SkuId=0;NotificationInterval=0;Trigger=UserLogon;SessionId=2"
+Information	10/14/2024 7:41:11 AM	Microsoft-Windows-Security-SPP	0000	None	"The Software Protection service has completed licensing status check.
+Application Id=0
+Licensing Status=
