@@ -29,7 +29,7 @@
 
 # Вариант с генератором 2
 #
-def generate_seq(max_v=5000):
+def generate_seq(max_v=100):
     for number in range(0, max_v + 1):
         yield number  # делает из функции генератор
 
@@ -40,8 +40,13 @@ def add_two(value):  # доп. функция для наглядности
 
 def main():
     # comprehension. можно применять к спискам и словарям
-    #values = [add_two(number): for number in generate_seq() if number % 12 == 0]
-    values = {add_two(number): number for number in generate_seq() if number % 12 == 0}
+    values = [
+        number
+        for number in generate_seq()
+        if number % 12 == 0
+    ]
+    #[add_two(number): for number in generate_seq() if number % 12 == 0]
+    #values = {add_two(number): number for number in generate_seq() if number % 12 == 0}
     print(values)
 
 
