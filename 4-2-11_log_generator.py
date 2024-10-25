@@ -1,3 +1,5 @@
+#!/bin/python3
+
 # поток ввода - Список IP в формате: ['XXX.XXX.XXX.XXX', 'XXX.XXX.XXX.XXX']
 # поток ввода - список команд, которые нужно выполнить на хостах в формате: ['command', 'command']
 # сформировать лог-сообщения, какие команды были выполнены на хосте: На хосте 123.123.123.123 была выполнена команда ls -la
@@ -6,17 +8,21 @@
 #TODO Значения будут подавать автоматически следующим способом:
 #TODO echo -e "['123.123.123.123', '321.321.321.321']\n['ls -la', 'ps uxwww']" | python3 your_programm.py - передача аргументов в питон снаружи, sys args
 
+import sys, os
+
+ip_addresses = sys.argv[1]  # sys.argv - список аргументов где 0 элемент - название файла со скриптом
+commands = sys.argv[2]
+
 
 input_line = "echo -e \"[\'123.123.123.123\', \'321.321.321.321\']\\n[\'ls -la\', \'ps uxwww\']\" | python3 your_programm.py"
 
-ip_addresses = ['123.123.123.123', '321.321.321.321', '222.222.222.222']
-commands = ['ls -la', 'df -h', 'rm -rf /']
+# ip_addresses = ['123.123.123.123', '321.321.321.321', '222.222.222.222']
+# commands = ['ls -la', 'df -h', 'rm -rf /']
 
+ip_addresses = sys.argv[1]  # sys.argv - список аргументов где 0 элемент - название файла со скриптом
+commands = sys.argv[2]
+input_line = "echo -e \"[\'123.123.123.123\', \'321.321.321.321\']\\n[\'ls -la\', \'ps uxwww\']\" | python3 your_programm.py"
 
-# def generate_hosts_with_commands(my_ip, my_cmd):
-#     val = dict(zip(my_ip, my_cmd))
-#     print(val)
-#     yield val
 
 def generate_hosts(my_ip):
     for x in my_ip:
