@@ -46,7 +46,7 @@ def main():
     # parser.add_argument('-c', '--commands',
     #                     action='append'
     #                     )
-                        # python .\task_621_argparse.py -c 123.123.123.123 -c 123.123.123.5
+                        # python .\task_060201_argparse.py -c 123.123.123.123 -c 123.123.123.5
 
 
     #parser.add_argument('-c', '--commands',
@@ -82,8 +82,8 @@ def main():
 
     print(args)
 
-    #  python .\task_621_argparse.py -h
-    #  python .\task_621_argparse.py json -h
+    #  python .\task_060201_argparse.py -h
+    #  python .\task_060201_argparse.py json -h
 
 if __name__ == '__main__':
     main()

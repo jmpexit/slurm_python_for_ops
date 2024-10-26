@@ -1,3 +1,4 @@
+# Целью этого задания будет декомпозиция вашей программы на функции
 
 def extent_and_prepare_list_with_new_values_from_input(mylist):
     """
