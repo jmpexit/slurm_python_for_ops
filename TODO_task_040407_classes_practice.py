@@ -10,6 +10,15 @@
 
 
 class MetricsAgent(): # объявление класса
+
+    def count_calls(func):
+        def wrapper(*args, **kwargs):
+            wrapper.calls += 1
+            # print(f'Функция {func.__name__} была вызвана {wrapper.calls} раз(а)')
+            return func(*args, **kwargs)
+        wrapper.calls = 0
+        return wrapper
+
     """
     Агент сбора метрик
     """
@@ -34,6 +43,7 @@ class MetricsAgent(): # объявление класса
         """
         print(f'События сервера {self.__dst_ip_addr} собраны. Следующий сбор через {self.__collect_period} секунд')
 
+    #@count_calls
     def send_events(self):
         """
         Отправка событий
@@ -42,8 +52,16 @@ class MetricsAgent(): # объявление класса
         print(f'События сервера {self.__dst_ip_addr} собраны и отправлены на сервер сбора метрик. '
               f'Следующиая отправка через {self.__send_period} секунд')
 
+    # TODO Получение информации о числе собранных событий: выводится сообщение "С сервера <IP-адрес> собрано <число вызовов метода сборки событий> событий".
+    def events_count(self):
+        """
+        Получение информации о числе собранных событий
+        :return:
+        """
+        count_calls(send_events)()
+        print(f'С сервера {self.__dst_ip_addr} собрано {COUNT} событий')
 
-#TODO Обнуление кеша агента: выводится сообщение "кеш агента был очищен" и  число вызовов метода сборки событий сбрасывается на 0.
+    #TODO Обнуление кеша агента: выводится сообщение "кеш агента был очищен" и  число вызовов метода сборки событий сбрасывается на 0.
     def clear_cash(self):
         """
         Очистка кэша событий
@@ -52,17 +70,13 @@ class MetricsAgent(): # объявление класса
         print('кеш агента был очищен')
 
 
-#TODO Получение информации о числе собранных событий: выводится сообщение "С сервера <IP-адрес> собрано <число вызовов метода сборки событий> событий".
-    def events_count(self):
-        """
-        Получение информации о числе собранных событий
-        :return:
-        """
-        print(f'С сервера {self.__dst_ip_addr} собрано Н событий')
-
-
 def main():
-
+    agent = MetricsAgent(1, 1, 1, 2)
+    agent.collect_events()
+    agent.send_events()
+    agent.send_events()
+   # agent.count_calls()
+    agent.events_count()
 
 if __name__ == '__main__':
     main()
