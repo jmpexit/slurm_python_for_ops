@@ -63,46 +63,64 @@ class MetricsAgent(): # объявление класса
 
     @collect_period.setter
     def collect_period(self, new_value):
-        if '-' in new_value:
-            raise ValueError("Значение не должно быть отрицательным")
-        if 'h' in new_value:
-           if 'm' in new_value:
-               if 's' in new_value:
-                    new_value = new_value.rstrip('s')
-                    new_value_hours, new_value_tmp = new_value.split('h')
-                    new_value_minutes, new_value_seconds = new_value_tmp.split('m')
-                    new_value_in_seconds = ((int(new_value_hours) * 3600) +
-                                            (int(new_value_minutes) * 60) + int(new_value_seconds))
-               else:
-                   new_value = new_value.rstrip('m')
-                   new_value_hours, new_value_minutes = new_value.split('h')
-                   new_value_in_seconds = ((int(new_value_hours) * 3600) + (int(new_value_minutes) * 60))
-           else:
-               if 's' in new_value:
-                    new_value = new_value.rstrip('s')
-                    new_value_hours, new_value_seconds = new_value.split('h')
-                    new_value_in_seconds = (int(new_value_hours) * 3600) + int(new_value_seconds)
-               else:
-                    new_value_hours = new_value.rstrip('h')
-                    new_value_in_seconds = int(new_value_hours) * 3600
-        else:
+        # if '-' in new_value:
+        #     raise ValueError("Значение не должно быть отрицательным")
+        # if 'h' in new_value:
+        #    if 'm' in new_value:
+        #        if 's' in new_value:
+        #             new_value = new_value.rstrip('s')
+        #             new_value_hours, new_value_tmp = new_value.split('h')
+        #             new_value_minutes, new_value_seconds = new_value_tmp.split('m')
+        #             new_value_in_seconds = ((int(new_value_hours) * 3600) +
+        #                                     (int(new_value_minutes) * 60) + int(new_value_seconds))
+        #        else:
+        #            new_value = new_value.rstrip('m')
+        #            new_value_hours, new_value_minutes = new_value.split('h')
+        #            new_value_in_seconds = ((int(new_value_hours) * 3600) + (int(new_value_minutes) * 60))
+        #    else:
+        #        if 's' in new_value:
+        #             new_value = new_value.rstrip('s')
+        #             new_value_hours, new_value_seconds = new_value.split('h')
+        #             new_value_in_seconds = (int(new_value_hours) * 3600) + int(new_value_seconds)
+        #        else:
+        #             new_value_hours = new_value.rstrip('h')
+        #             new_value_in_seconds = int(new_value_hours) * 3600
+        # else:
+        #     if 's' in new_value:
+        #         new_value = new_value.rstrip('s')
+        #         if 'm' in new_value:
+        #             new_value_minutes, new_value_seconds = new_value.split('m')
+        #             new_value_in_seconds = (int(new_value_minutes) * 60) + int(new_value_seconds)
+        #         else:
+        #             new_value_in_seconds = int(new_value)
+        #     else:
+        #         new_value = new_value.rstrip('m')
+        #         new_value_in_seconds = int(new_value) * 60
+        # self.__collect_period = new_value_in_seconds
+
+        def parse_time(new_value):
+            if '-' in new_value:
+                raise ValueError("Значение не должно быть отрицательным")
+            new_value_in_seconds = 0
+            if 'h' in new_value:
+                hours, new_value = new_value.split('h', 1)
+                new_value_in_seconds += int(hours) * 3600
+            if 'm' in new_value:
+                minutes, new_value = new_value.split('m', 1)
+                new_value_in_seconds += int(minutes) * 60
             if 's' in new_value:
                 new_value = new_value.rstrip('s')
-                if 'm' in new_value:
-                    new_value_minutes, new_value_seconds = new_value.split('m')
-                    new_value_in_seconds = (int(new_value_minutes) * 60) + int(new_value_seconds)
-                else:
-                    new_value_in_seconds = int(new_value)
-            else:
-                new_value = new_value.rstrip('m')
-                new_value_in_seconds = int(new_value) * 60
-        self.__collect_period = new_value_in_seconds
+                new_value_in_seconds += int(new_value)
+
+            return new_value_in_seconds
+
+        self.__collect_period = parse_time(new_value)
 
 def main():
     agent = MetricsAgent('100.100.100.10', '111-123', 10, 20)
 
     print(agent.collect_period)
-    agent.collect_period = '1h30m30s'
+    agent.collect_period = '60h1s'
     print(agent.collect_period)
 
 
