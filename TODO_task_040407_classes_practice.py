@@ -9,16 +9,33 @@
 #Получение информации о числе собранных событий: выводится сообщение "С сервера <IP-адрес> собрано <число вызовов метода сборки событий> событий".
 
 
+def count_calls(func):
+    def wrapper(self):
+        wrapper.calls += 1
+        print(f'Функция {func.__name__} была вызвана {wrapper.calls} раз(а)')
+        return func(self)
+    wrapper.calls = 0
+    return wrapper
+
+    # ПРИМЕР
+    # def method_friendly_decorator(method_to_decorate):
+    #     def wrapper(self, lie):
+    #         lie = lie - 3  # действительно, дружелюбно - снизим возраст ещё сильней :-)
+    #         return method_to_decorate(self, lie)
+    #     return wrapper
+    # class Lucy(object):
+    #     def __init__(self):
+    #         self.age = 32
+    #     @method_friendly_decorator
+    #     def sayYourAge(self, lie):
+    #         print
+    #         "Мне %s, а ты бы сколько дал?" % (self.age + lie)
+    # l = Lucy()
+    # l.sayYourAge(-3)
+    # # выведет: Мне 26, а ты бы сколько дал?
+
+
 class MetricsAgent(): # объявление класса
-
-    def count_calls(func):
-        def wrapper(*args, **kwargs):
-            wrapper.calls += 1
-            # print(f'Функция {func.__name__} была вызвана {wrapper.calls} раз(а)')
-            return func(*args, **kwargs)
-        wrapper.calls = 0
-        return wrapper
-
     """
     Агент сбора метрик
     """
@@ -43,14 +60,15 @@ class MetricsAgent(): # объявление класса
         """
         print(f'События сервера {self.__dst_ip_addr} собраны. Следующий сбор через {self.__collect_period} секунд')
 
-    #@count_calls
+    @count_calls
     def send_events(self):
         """
         Отправка событий
         :return:
         """
         print(f'События сервера {self.__dst_ip_addr} собраны и отправлены на сервер сбора метрик. '
-              f'Следующиая отправка через {self.__send_period} секунд')
+              f'Следующиая отправка через {self.__send_period} секунд;\n'
+              f'С сервера {self.__dst_ip_addr} собрано {count_calls(self)} событий')
 
     # TODO Получение информации о числе собранных событий: выводится сообщение "С сервера <IP-адрес> собрано <число вызовов метода сборки событий> событий".
     def events_count(self):
@@ -58,8 +76,7 @@ class MetricsAgent(): # объявление класса
         Получение информации о числе собранных событий
         :return:
         """
-        count_calls(send_events)()
-        print(f'С сервера {self.__dst_ip_addr} собрано {COUNT} событий')
+        #print(f'!!!Я - МЕТОД КЛАССА!!! С сервера {self.__dst_ip_addr} собрано {count_calls()} событий')
 
     #TODO Обнуление кеша агента: выводится сообщение "кеш агента был очищен" и  число вызовов метода сборки событий сбрасывается на 0.
     def clear_cash(self):
@@ -80,3 +97,28 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+#ПРИМЕР
+# def method_friendly_decorator(method_to_decorate):
+#     def wrapper(self, lie):
+#         lie = lie - 3  # действительно, дружелюбно - снизим возраст ещё сильней :-)
+#         return method_to_decorate(self, lie)
+#
+#     return wrapper
+#
+#
+# class Lucy(object):
+#
+#     def __init__(self):
+#         self.age = 32
+#
+#     @method_friendly_decorator
+#     def sayYourAge(self, lie):
+#         print
+#         "Мне %s, а ты бы сколько дал?" % (self.age + lie)
+#
+#
+# l = Lucy()
+# l.sayYourAge(-3)
+# # выведет: Мне 26, а ты бы сколько дал?
