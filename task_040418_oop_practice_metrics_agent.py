@@ -1,5 +1,3 @@
-#TODO Агент для Prometheus не позволяет управлять периодом отправки событий
-
 def parse_time(time):
     if '-' in time:
         raise ValueError("Значение не должно быть отрицательным")
@@ -192,8 +190,8 @@ def main():
     agent_ca.collect_period = '60h1s'
     agent_ca.send_period = '60h1s'
     agent_p.collect_period = '60h1s'
-    agent_p.send_period = '60h1s'
-    print(agent_ca.collect_period, agent_ca.send_period, agent_p.collect_period, agent_p.send_period, agent_ca.carbon_ip_addr)
+    #agent_p.send_period = '60h1s'
+    print(agent_ca.collect_period, agent_ca.send_period, agent_p.collect_period, agent_p._send_period, agent_ca.carbon_ip_addr)
 
     agent_ca.collect_events()
     agent_ca.send_events()
@@ -201,7 +199,7 @@ def main():
     agent_p.send_events()
     agent_p.events_count()
     agent_p.clear_cache()
-    print(agent_p.send_period)
+    print(agent_p._send_period)
 
 if __name__ == '__main__':
     main()
