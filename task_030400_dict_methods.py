@@ -78,3 +78,11 @@ print(dict(zip(my_keys, my_values)))
 # Метод clear
 #info_about_me.clear()
 #print(info_about_me)
+
+# itemd_dict = {
+#     'Vasya1': {'temp': 12, 'items': 3},
+#     'Vasya2': {'temp': 12, 'items': 3},
+#     'Vasya3': {'temp': 12, 'items': 3},
+#     'Vasya4': {'temp': 12, 'items': 3},
+#     'Vasya5': {'temp': 12, 'items': 3},
+# }

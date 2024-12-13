@@ -47,7 +47,7 @@ def parse_commands(input_data):
     print(commands_parsed)
     print(resources_parsed)
     commands_and_resources_dict = dict(zip(commands_parsed, resources_parsed))
-    commands_and_resources_dict.
+   # commands_and_resources_dict.
     print(commands_and_resources_dict)
 
     # old example:
