@@ -6,18 +6,12 @@
 #data = input()
 data = ('cmd1|(ID1, type1, date1, load1);(ID2, type2, date2, load2)'
         '$cmd3|(ID3, type3, date3, load3)'
-        '$cmd4|(ID4, type4, date4, load4)')
+        '$envisioneer rich mindshare|(SZY1417, CPU, 2024-12-12 13:00, 50)')
 
 
-# {'Название команды':
-#   {'Название ресурса':
-#       {'Измерение ресурса':
-#           {'Среднее измерения': 51.645, 'Медиана измерения': 53.0, 'Тип использования': 'Stable', 'Интенсивность использования': 'Medium',
-# 'envisioneer rich mindshare':
-#    {'SZY1417':
-#        {'CPU':
-#           {'mean': 51.645, 'mediana': 53.0, 'usage_type': 'Stable', 'intensivity': 'Medium'}
-# ... }
+# {'Название команды': {'Название ресурса': {'Измерение ресурса': {'Среднее измерения': 51.645, 'Медиана измерения': 53.0, 'Тип использования': 'Stable', 'Интенсивность использования': 'Medium',
+# 'envisioneer rich mindshare': {'SZY1417': {'CPU': {'mean': 51.645, 'mediana': 53.0, 'usage_type': 'Stable', 'intensivity': 'Medium'} ... }
+# 'envisioneer rich mindshare': {'SZY1417': {'CPU': {'mean': 51.645, 'mediana': 53.0, 'usage_type': 'Stable', 'intensivity': 'Medium'} ... }
 
 def parse_commands(input_data):
     commands_and_resources = []
@@ -26,58 +20,46 @@ def parse_commands(input_data):
     commands_and_resources_dict = {}
     for i in range(0, (input_data.count('$')+1)):
         if '$' in input_data:
-            commands, input_data = input_data.split('$', 1)
-            #new idea
-            #commands_and_resources, input_data = input_data.split('$', 1)
-            # потом для каждой команды - список нескольких ресурсов в подцикле
+            command_line, input_data = input_data.split('$', 1)
         else:
-            commands = input_data
-        command, resources = commands.split('|', 1)
+            command_line = input_data
+        command, resources = command_line.split('|', 1)
         commands_parsed.append(command)
-        #commands_and_resources.append('{' + '\'' + command + '\'' + ': ')
-        for i in range(0, (resources.count(',') + 1)):
-            if ',' in resources:
-                resource, resources = resources.split(',', 1)
-            else:
-                resource = resources
-            resource = resource.strip('(),')
-            resources_parsed.append(resource)
-            #commands_and_resources.append('{' + '\'' + resource + '\'' + ': ')
-            #print(resource)
-    print(commands_parsed)
-    print(resources_parsed)
+        resources = resources.translate({ord(i): None for i in '()'})
+        resources_parsed.append(resources)
+
     commands_and_resources_dict = dict(zip(commands_parsed, resources_parsed))
-   # commands_and_resources_dict.
+
+    print('')
+
+    for k, v in commands_and_resources_dict.items():
+        v_new = set()
+        for i in range(0, (v.count(';') + 1)):
+            if ';' in v:
+                v1, v = v.split(';', 1)
+                v_new.add(v1)
+            else:
+                v_new.add(v)
+        v = v_new
+        commands_and_resources_dict.update({k: v})
+
+    for k, v in commands_and_resources_dict.items():
+       v_res = dict()
+
+       for i in v:
+            res_id, scope, date, load = i.split(',')
+            print(res_id, scope, date, load)
+            v_res.update({res_id: {scope, date, load}})
+
+       commands_and_resources_dict.update({k: v_res})
+
+
+    print('')
     print(commands_and_resources_dict)
 
-    # old example:
-    # ip_addresses = ips.translate({ord(i): None for i in '[]"\''}).split(', ')
-    # commands = cmds.translate({ord(i): None for i in '[]"\''}).split(', ')
-
-    # print(commands_and_resources)
-    # for command in commands_and_resources:
-    #     if ';' in command:
-    #         command, temp_value = command.split(';', 1)
-    #     else:
-    #         command = input_data
-    #     commands_and_resources.append(command)
-
-
-
-#cmd|(ID, Измерение, Дата, Загрузка);(ID, Измерение, Дата, Загрузка)$cmd|(ID, Измерение, Дата, Загрузка)
-
-        # if 'm' in new_value:
-        #     minutes, new_value = new_value.split('m', 1)
-        #     new_value_in_seconds += int(minutes) * 60
-        # if 's' in new_value:
-        #     new_value = new_value.rstrip('s')
-        #     new_value_in_seconds += int(new_value)
-        # return new_value_in_seconds
 
 def main():
-    #data = input()
     parse_commands(data)
-
 
 
 if __name__ == "__main__":
