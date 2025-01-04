@@ -25,7 +25,22 @@ class DBAccessor:
 
 def main():
     with DBAccessor(DB_CREDS) as cursor:
-        for row in cursor.execute("SELECT * FROM user"):
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Command (
+        ResourceId INTEGER PRIMARY KEY,
+        Scope TEXT NOT NULL,
+        Mean INTEGER,
+        Mediana INTEGER,
+        UsageType TEXT,
+        Intensivity TEXT,
+        Decision TEXT
+        )
+        ''')
+
+        cursor.execute('INSERT INTO Command (Scope, Mean, Mediana) VALUES (?, ?, ?)',
+                       ('CPU', 50, 58))
+
+        for row in cursor.execute("SELECT * FROM Command"):
             print(row)
 
     #AAA debug
