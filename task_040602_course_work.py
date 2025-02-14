@@ -163,7 +163,6 @@ def collect_data_into_database(command, resource_name, scope, mean, mediana, usa
 
 
 def main():
-    #input_data = input()
     commands = parse_commands_method_two(input_data)
 
     # Write into database

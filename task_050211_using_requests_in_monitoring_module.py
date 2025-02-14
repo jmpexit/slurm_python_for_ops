@@ -6,34 +6,19 @@ import requests
 # Самое время использовать модуль requests, чтобы выполнить HTTP-запрос внутри вашего приложения.
 
 def main():
-    input_data = input()
+    input_data = input() # input_data = requests.get(base_url)
     print(input_data[:100])
 
 def main_post():
-    base_url = '127.0.0.1:21122/monitoring/infrastructure/using/summary/1/post'
+    base_url = 'http://127.0.0.1:21122/monitoring/infrastructure/using/summary/1'
+    input_data = requests.get(base_url)
 
-    # payload = {
-    #     'id': 3333,
-    #     'name': 'Python'
-    # }
-    #
-    # query_params = {
-    #     'param1': 'foo',
-    #     'param2': 'bar'
-    # }
-    # headers = {
-    #     'User-Agent': 'Chrome',
-    #     'Authorization': 'Bearer: stejhgoptrirpots'
-    # }
-
-    response = requests.post(base_url) #, params=query_params, headers=headers, data=payload)
-
-    # print(response.json())
+    print(input_data.text)
 
     # return response
 
 if __name__ == "__main__":
-    main()
+    #main()
     main_post()
 
 

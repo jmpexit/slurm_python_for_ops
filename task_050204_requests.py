@@ -117,7 +117,7 @@ def main():
         print('RESPONSE 9: ', response9.status_code)
         print(response9.text)
 
-        response10 = session.post(url=base_url + '/post', timeout=10)
+        response10 = session.post(url=base_url + '/post', timeout=0.01)
         print('RESPONSE 10: ', response10.status_code)
         print(response10.text)
 

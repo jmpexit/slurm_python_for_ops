@@ -18,5 +18,5 @@ if __name__ == "__main__":
     main()
 
 
-# чтобы перелвть результаты работы мониторинга, вводим во 2ом терминале
-    # curl 127.0.0.1:21122/monitoring/infrastructure/using/summary/1 | python task_040601_course_work.py
+# чтобы передать результаты работы мониторинга, вводим во 2ом терминале
+    # curl 127.0.0.1:21122/monitoring/infrastructure/using/summary/1 | python task_040601_course_work_monitoring_module.py
