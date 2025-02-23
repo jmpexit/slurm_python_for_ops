@@ -1,3 +1,5 @@
 Faker
 Flask
 requests
+paramiko
+docker

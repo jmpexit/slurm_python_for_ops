@@ -26,8 +26,7 @@ class DBAccessor:
         return self.__cursor
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        # метод будет у нас вызываться тогда,
-        # когда мы выйдем из области видимости контекстного менеджера
+        # метод будет вызываться тогда, когда мы выйдем из области видимости контекстного менеджера
         self.__connection.commit()
         self.__connection.close()
         print('')

@@ -96,7 +96,6 @@ def parse_commands_and_save_to_db(raw_input_data):
             resource = resource[1:-1]
             resource = resource.split(',', 6)  # make it a list
             res_name, res_type, res_time, mean, mediana = resource[0], resource[1], resource[2], resource[3], resource[3]
-                    #TODO !!!!!!!! NOT update !!!!!!!!!
             resources.update({"res_name": res_name, "res_type": res_type, "res_time": res_time, "mean": mean, "mediana": mediana,
                                       "stability": count_resource_stability(mean, mediana), "intensity": count_resource_intensity(mediana),
                                       "decision": make_a_decision_about_resource(count_resource_stability(mean, mediana),
