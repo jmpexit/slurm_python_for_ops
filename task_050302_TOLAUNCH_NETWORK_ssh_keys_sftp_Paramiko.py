@@ -9,17 +9,17 @@ import paramiko
 
 
 # DISCLAIMER: when we don't have server pwd, we can use keys
-def main_using_keys():
-    key = paramiko.RSAKey.from_private_key_file('C:\\keys\\rsa_key') # path on local machine with private key
-    with paramiko.SSHClient() as ssh_client:
-        ssh_client.load_system_host_keys()
-        #ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
-        ssh_client.connect(hostname='localhost', port=2222,
-                            username='service_user', pkey=key,
-                           banner_timeout=400)
-    # authorize with 'ssh -p 2222 service_user@localhost' - the key must be used
-
-        print('Hi')
+# def main_using_keys():
+#     key = paramiko.RSAKey.from_private_key_file('C:\\keys\\rsa_key') # path on local machine with private key
+#     with paramiko.SSHClient() as ssh_client:
+#         ssh_client.load_system_host_keys()
+#         #ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
+#         ssh_client.connect(hostname='localhost', port=2222,
+#                             username='service_user', pkey=key,
+#                            banner_timeout=400)
+#     # authorize with 'ssh -p 2222 service_user@localhost' - the key must be used
+#
+#         print('Hi')
 
 #def main_sftp():
         # ssh_client.invoke_shell()
@@ -57,4 +57,4 @@ def main_using_keys():
         #     sftp_client.chown('txt_old.txt', 0, 0)
 
 if __name__ == "__main__":
-     main_using_keys()
+    # main_using_keys()
