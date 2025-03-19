@@ -2,7 +2,7 @@ import sqlite3
 
 
 def create_database():
-    con = sqlite3.connect('../../commands.db')
+    con = sqlite3.connect('../commands.db')
     con.close()
 
     # OR
